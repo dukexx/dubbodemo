@@ -10,6 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbodemo-csm</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>dubbodemo-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

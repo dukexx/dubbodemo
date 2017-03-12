@@ -13,10 +13,11 @@
 
     <dependencies>
 
-        <!--<dependency>-->
-            <!--<groupId>com</groupId>-->
-            <!--<artifactId>dubbo</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>dubbodemo-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 

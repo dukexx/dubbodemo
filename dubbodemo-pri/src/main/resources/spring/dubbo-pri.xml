@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--提供方应用信息，用于计算依赖关系-->
+    <dubbo:application name="dubbodemo-provide-app"></dubbo:application>
+
+    <!--使用multicast广播注册中心暴露服务地址-->
+    <dubbo:registry address="multicast://224.5.6.7:1234?unicast=false">
+    </dubbo:registry>
+
+    <!--使用dubbo协议在20880端口暴露服务-->
+    <dubbo:protocol name="dubbo" port="20880" dispatcher="all" threadpool="fixed" threads="100"></dubbo:protocol>
+
+
+    <!--指定要暴露服务的接口，并指定引用的本地bean-->
+    <dubbo:service interface="com.dubbodemo.service.TestService" ref="testServiceImpl" version="1.0.0"/>
+
+    <!--服务方通过注解配置时的配置，指定注解配置的扫描包，不配置默认扫描ApplicationContext中的所有类-->
+    <dubbo:annotation package="com.dubbodemo.pri.service"/>
+
+    <!--
+    另一种方式，启动注解配置，实用默认的扫描ApplicationContext中的类
+    <dubbo:annotation/>
+    将带有com.alibaba.dubbo.config.annotation.Service注解的类扫描到ApplicationContext中
+    <context:component-scan base-package="com.dubbodemo.pri.service">
+        配置包扫描过滤
+        <context:include-filter type="annotation"
+                                expression="com.alibaba.dubbo.config.annotation.Service"></context:include-filter>
+    </context:component-scan>
+    -->
+
+</beans>
